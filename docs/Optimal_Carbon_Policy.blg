@@ -1,0 +1,60 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Optimal_Carbon_Policy.aux
+Reallocating 'name_of_file' (item size: 1) to 26 items.
+Reallocating 'name_of_file' (item size: 1) to 8 items.
+The style file: apalike.bst
+Database file #1: Optimal_Carbon_Policy.bib
+Repeated entry---line 589 of file Optimal_Carbon_Policy.bib
+ : @article{chancel2022global
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 618 of file Optimal_Carbon_Policy.bib
+ : @article{golosov2014optimal
+ :                            ,
+I'm skipping whatever remains of this entry
+Warning--there's a number but no volume in belfiori2024unequal
+Warning--there's a number but no series in bellandmiller
+Warning--empty journal in chancelandrehm
+You've used 22 entries,
+            1935 wiz_defined-function locations,
+            600 strings with 8268 characters,
+and the built_in function-call counts, 8064 in all, are:
+= -- 781
+> -- 355
+< -- 13
++ -- 121
+- -- 118
+* -- 685
+:= -- 1476
+add.period$ -- 69
+call.type$ -- 22
+change.case$ -- 171
+chr.to.int$ -- 21
+cite$ -- 25
+duplicate$ -- 287
+empty$ -- 531
+format.name$ -- 152
+if$ -- 1532
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 19
+newline$ -- 115
+num.names$ -- 66
+pop$ -- 129
+preamble$ -- 1
+purify$ -- 169
+quote$ -- 0
+skip$ -- 219
+stack$ -- 0
+substring$ -- 489
+swap$ -- 17
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 128
+warning$ -- 3
+while$ -- 58
+width$ -- 0
+write$ -- 289
+(There were 2 error messages)
