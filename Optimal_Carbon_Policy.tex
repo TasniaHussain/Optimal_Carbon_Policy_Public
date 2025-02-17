@@ -1,0 +1,1014 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage{sectsty}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage{titlesec}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{dcolumn,tabularx,ltxtable,array}
+\newcolumntype{d}[1]{D{.}{.}{#1}} % "decimal" column type
+\usepackage{cite}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=black, urlcolor=red]{hyperref}
+
+\usepackage{xcolor}
+\usepackage{datetime}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[normalem]{ulem}
+\usepackage{float}
+\usepackage{chngcntr}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{bbm}
+\pgfplotsset{compat=newest}
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEDAY ,  \THEYEAR}
+\usepackage{appendix}
+
+%\usepackage[T1]{fontenc}
+%\fontfamily{georgia}\selectfont
+
+\titleformat{\subsection}{\small\bfseries}{\thesubsection}{1em}{}
+
+
+\usepackage{amssymb,amsmath,amsfonts,eurosym,geometry,ulem,graphicx,caption,color,setspace,sectsty,comment,footmisc,caption,natbib,pdflscape,subfigure,array,hyperref}
+
+\normalem
+
+\onehalfspacing
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}{Proposition}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newtheorem{hyp}{Hypothesis}
+\newtheorem{subhyp}{Hypothesis}[hyp]
+\renewcommand{\thesubhyp}{\thehyp\alph{subhyp}}
+
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\blue}[1]{{\color{blue} #1}}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\arraybackslash\hspace{0pt}}m{#1}}
+
+\geometry{left=1.0in,right=1.0in,top=1.0in,bottom=1.0in}
+
+
+
+% Adjust spacing and paragraph settings
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.5ex}
+\onehalfspacing
+
+% Section title settings
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\author{Tasnia Hussain \thanks{University of Toronto Department of Economics. Contact: tasnia.hussain@mail.utoronto.ca}}
+\title{Optimal Carbon Policy under Carbon Inequality \thanks{I wholeheartedly thank my co-supervisors, Joseph B. Steinberg and Eduardo Souza Rodrigues, for their unwavering support and generous guidance throughout every stage of this paper. Additionally, I extend thanks to Gueorgui Kambourov for his invaluable feedback and suggestions which greatly enriched the quality of this paper.  Financial support from the Ontario Graduate Scholarship Program and the University of Toronto is gratefully acknowledged. }}
+\date{\monthyeardate \today}
+
+%For their insightful comments and help during the paper's development, I would like to thank Anubha Agarwal, Devin Bissky Dziadyk, Murat Celik, Fatih Guvenen, Mahmood Haddara, Sobia Jafrey, Duc Nguyen, Peter Morrow, Jeffrey Sun, Benjamin Rommelaere, Annabel Thornton, Alvaro Pinzon, Brian Coven, and Renato Zimmerman.
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+ 
+\hspace*{6mm} Rich households generate a disproportionate share of carbon emissions, particularly when the emissions from their investments are accounted for as well as their emissions from  consumption. This paper builds a quantitative general-equilibrium model that accounts for inequality in both wealth and emissions and uses it to study the aggregate and distributional effects of carbon taxes. In addition to a uniform tax on all emissions, I consider three targeted policies: (i) a tax on emissions from “basic” energy consumption borne disproportionately by households of low socioeconomic status; (ii) a tax on emissions from consumption borne only by the rich; and a (iii) tax on production emissions borne by shareholders. In a setting where carbon footprints arise from both consumption and production emissions, taxing consumption emissions induces different economic outcomes than taxing production emissions. The production-emissions tax reduces emissions inequality and is welfare improving, despite wages and output falling, but increases wealth inequality by reallocating capital towards highly productive firms. In contrast, the basic consumption tax is the only tool to increase output, but increases inequality along both dimensions. Welfare rises, especially for low productivity groups, due to wages not falling as they do under production-emissions taxes. The luxury-consumption tax reduces emissions inequality slightly but has a negligible effects on aggregate outcomes. These differential economic responses move us away from a world of uniform taxation. The optimal mix of targeted policies with differing taxes on production emissions and consumption emissions yields better economic outcomes than a uniform carbon tax achieving the same reduction in aggregate emissions. 
+    \\
+		
+		
+		%\textit{JEL codes}:
+		
+		\textit{Keywords}: Climate Change, Inequality, Taxation, Wealth
+	
+		\pagebreak
+	
+
+	\end{abstract}
+
+\section{Introduction} 
+\hspace*{6mm} Extreme weather events induced by anthropogenic climate change necessitate urgent action to mitigate its impacts on the environment, society, and the economy. Limiting global warming to 1.5$^{\circ}$ can prevent the deadliest impacts, according to the IPCC. The 2016 Paris Agreement marked a watershed moment for global coordination in limiting warming to 1.5$^{\circ}$, with nearly 200 countries entering into a legally binding commitment to reduce their emissions. For instance, the US aims to halve emissions by 2030. However, recent evidence documenting carbon inequality finds that the "polluter elite", rich individuals with both polluting lifestyles and sources of income, disproportionately burn through the carbon budget meant to maintain the 1.5$^{\circ}$ limit \citep{chancel2022global, starr2023income, starr2023assessing}. While the bottom 50\% by wealth are within or near their 2030 per capita targets, the carbon footprint of the top 1\% and 0.1\% is almost 50 to 300 times larger. These high emitters not only have polluting consumption habits, they also generate wealth in carbon-intensive ways, particularly billionaires, whose emissions from corporate ownership reach the millions in tonnes of $CO_2$ \citep{maitland2022carbon}. Wealth-based carbon footprints are far more unequal than solely looking at consumption-based carbon footprints \citep{chancelandrehm}. When taking into account the emissions generated by the ownership of assets, the share of U.S emissions generated by the top 0.1\% of the wealth distribution goes from 2.2\% to 15.3\%, shown in Figure 1.
+
+\begin{figure}[h]
+\centering
+\text{Figure 1: Distribution of emissions by wealth group in the U.S}\\  % Manually adding Figure number at the top
+\vspace{0.5em}
+
+\includegraphics[scale=0.2]{../Slides/disbn_wealth_group_paper.png} 
+\captionsetup{font=footnotesize}  % Make caption text smaller
+\caption*{Notes: This figure uses data from Table 3 of \cite{chancelandrehm}, which captures the share of emissions attributed to each net personal wealth group in the U.S using both consumption-based and ownership-based approaches}  % Keep automatic numbering for later figures
+\end{figure}
+
+\hspace*{6mm} Given the state of carbon inequality, alternative policy tools to a uniform carbon tax are gaining traction, such as shareholder-facing carbon taxes on investments in polluting industries, luxury dirty good taxes, and an overall improvement in progressivity to reduce the consumption of highly polluting goods. While a uniform carbon tax is widely regarded by economists as the tool of choice to mitigate climate change, the presence of heterogeneity in consumption and production emissions can lead to a departure from a uniform carbon tax as the optimal tool. In a general equilibrium framework where an individual's carbon footprint can arise from both production and consumption choices, taxing consumption emissions induces different economic outcomes than taxing their production emissions. The second reason to consider alternatives to a standard carbon tax is the political infeasibility. For the world's second largest polluter, implementing a carbon tax seems to be detached from political reality. Clinton and Obama both failed to make any headway on taxing emissions. Clinton's ``BTU'' tax failed in 1994, never even reaching the Senate, as heavy industry convinced customers their power bills would sky rocket. The public distaste for a carbon price, arising from the belief that it is born regressively by lower-income households, can compromise public support for carbon policies, as was the case in France during the 2018 Yellow Vest protests \citep{DOUENNE2020106496}.
+
+\hspace*{6mm} This paper employs a model generating realistic concentrations of both wealth and carbon emissions, the latter arising from featuring both production and consumption emissions, to study the impact of the targeted abatement policies, as well as a uniform carbon tax, on economic outcomes. Specifically, it examines a shareholder-facing tax, referred to as a tax on production emissions, as well as a luxury dirty goods tax and a basic dirty goods tax, both of which are levied on consumption emissions. It also studies the performance of a uniform carbon tax in this heterogeneous setting. Building on the framework of \cite{GETAL}, I integrate an energy sector into a quantitative overlapping-generations model with rate-of-return heterogeneity. On the consumption side, households have non-homothetic preferences over the consumption of a basic dirty good, a luxury dirty good, and a non-energy good. While many papers feature heterogeneity in emissions arising from consumption, this paper goes one step further by featuring heterogeneous emissions arising from production. Entrepreneurs, who operate a business and earn monopoly profits, must also use energy to produce. With heterogeneity in entrepreneurial ability and the ability to leverage their wealth, subject to a collateral constraint, the model can deliver extreme wealth concentration and also the carbon footprint of both wealth and consumption. This makes it the ideal laboratory to study the impacts of targeted policies. 
+
+\hspace*{6mm} Energy is produced using a linear technology employing labour, with energy demand coming from entrepreneurs and a portion sold directly to the households as they consume their basic and dirty goods. The intermediate goods are then sold to the final goods producer, who uses labour to aggregate together all of the differentiated goods to produce a final consumption good, sold to the households. Individuals have heterogeneous labour productivity and face idiosyncratic risks to this productivity every period, supplying labour to either the final good producer or energy firm. After retirement, they receive social security payments from a government that runs a balanced budget by raising revenue using a variety of tax instruments. 
+
+\hspace*{6mm} The welfare analysis is done using consumption equivalents. However, I use the social cost of carbon to assess the social benefits of the reduced emissions from each policy, keeping this analysis separate from the  welfare arising from the economic impacts of various tax policies. I use a conservative estimate of the social cost of carbon
+
+\hspace*{6mm} I begin by varying each tax individually from 10\% to 30\%, while others are held constant, to explore the different channels through which they influence key economic outcomes. Revenues from each experiment are rebated back to households in a lump sum fashion. Firstly, there are distinctly different economic mechanisms behind producer-facing and consumer-facing carbon taxes. Given these different mechanisms, which are described in the next paragraphs, the optimal policy  is a mixture of different taxes on consumption and production emissions delivering higher welfare than a uniform carbon tax which achieves the same abatement.
+
+\hspace*{6mm} Beginning with the shareholder-facing tax, the rise in the price of an entrepreneur's energy input reduces their energy demand, resulting in two key effects arising from this tax on production emissions. First, emissions from the entrepreneurial sector reduce across the board. As the energy firm faces less demand, they employ less energy workers, who subsequently reallocate towards the final good sector and wages fall. This labour reallocation channel exerts an upward force on final good production. Secondly, despite this positive effect, output ultimately declines under this tax due to the dominance of the raw inputs channel: Since entrepreneurs scale back energy use, capital productivity declines, resulting in reduced capital demand, and consequently, a contraction in entrepreneurial production. 
+
+\hspace*{6mm} Furthermore, there are distributional consequences of reduced entrepreneurial demand. First, as the relative price of energy to capital rises, entrepreneurs change their input mix by reducing their relative use of energy to capital. Given the disproportionate concentration of entrepreneurs at the top of wealth distribution, this change reduces emissions from production for wealthier individuals, subsequently curbing carbon inequality. Secondly, the differential responses of collateral-constrained and unconstrained entrepreneurs increase wealth inequality. Unconstrained firms, generally less productive entrepreneurs, reduce energy and capital use. Their constrained counterparts, often more productive entrepreneurs, cannot change capital use. For this reason, a more efficient allocation of capital occurs as the relative capital held by less productive entrepreneurs falls and capital concentrates amongst the most productive entrepreneurs, increasing top wealth shares. 
+
+\hspace*{6mm} Lastly, welfare, measured in average consumption equivalents, rises across the distribution despite the decline in output and wages. This is partially due to lump sump transfers, as well as households adjusting their consumption baskets to consume more of the untaxed dirty goods over the final good. Wealthier entrepreneurs also benefit due to how the tax interacts with their collateral constraints. Using an SCC of \$120, the social value of emissions reductions is approximately 0.7\% of global GDP in 2019.
+
+\hspace*{6mm} Turning to the consumption emissions taxes, a tax on the luxury goods consumed by 0.1\% of people naturally has a minimal impact on emissions reduction and the studied economic outcomes. There is only the slightest decline in the carbon share of the top 0.1\%, as their consumption emissions decline. On the other hand, taxing the basic dirty good triggers three responses. First, consumption of the basic dirty good declines if above the subsistence level, reducing emissions from its consumption. Second, the reduced incentive to consume induces households to accumulate more wealth, relaxing the collateral constraints for constrained entrepreneurs. Lastly, demand for the final good, the non-energy substitute, rises. Entrepreneurs respond to the relaxed constraints and increased demand by increasing their use of energy and capital. This makes emissions from production rise, partially offsetting some of the consumption emissions abatement and subsequently weakening the labour reallocation channel as the energy sector lays off relatively less workers, preventing the steep decline in wages seen with a production emissions tax. Moreover, as entrepreneurs deploy more capital and energy, the raw inputs channel no longer dampens output, and so the final goods sector expands, making the basic dirty good tax the only instrument that increases output. 
+
+\hspace*{6mm}  While a producer-facing tax curbs carbon inequality, the same cannot be said for a consumption emissions tax. As higher capital demand by entrepreneurs raises interest rates while the cost of energy remain unchanged, this lower relative cost of energy to capital induces the wealthiest entrepreneurs to use more energy relative to capital, increasing their carbon shares. Secondly, the relaxed collateral constraints and higher demand increases the wealth shares of the top 1\% and 10\% wealth groups. There is a slightly positive but small increase in wealth inequality for the top 0.1\%, more subdued because at the very top, these firms are hitting decreasing returns to scale so the higher demand generates less of a response there. 
+
+\hspace*{6mm} Similar to the producer-facing tax, welfare increases but by less. Although lower productivity groups benefit from transfers, higher output, and wages not declining, this tax harms the most productive and constrained entrepreneurs who want to increase capital demand but are hindered by the rising cost of borrowing. Moreover, the social value of emissions abatement under this policy is lower than that achieved through a producer-facing tax, due to emissions from the production sector partially offsetting some of the consumption emissions abatement.
+
+
+\hspace*{6mm} Bringing it all together, a uniform carbon tax which taxes both consumption and production emissions uniformly reduces emissions the most as firms cut back on energy-use and households consume less basic and dirty luxury goods. Consequently, the energy firm responds to energy demand falling by laying off energy workers who reallocate to the final good sector, having the largest labour reallocation effect on output. The strength of this channel prevents output from falling off as much as it does under using a production emissions tax alone but is also the reason wages fall the most under the uniform carbon tax. 
+
+\hspace*{6mm} Carbon inequality falls with a uniform carbon tax, albeit less than with solely a shareholder facing tax.  This is because it also taxes consumption emissions simultaneously, inducing the savings channel, buffering some of the decline in capital stock relative to what we see with solely a production-emissions tax. Subsequently, interest rates are higher in this equilibrium, leading to a relatively higher cost of capital to energy for entrepreneurs. Since they employ relatively more energy now, their share of emissions from production do not fall off as much as we see with the shareholder emissions tax. 
+
+\hspace*{6mm} Unlike with the previous instruments, welfare declines when consumption and production emissions are taxed uniformly. First, transfers are not enough to compensate for the fall in wages. Second, households cannot adjust their consumption mix to a relatively less-taxed good and so the consumption of all three goods contributing to a household's utility are lower in equilibrium. Lastly, as interest rates are highest under this tax, the high cost of borrowing hurts constrained entrepreneurs. Despite the steep welfare losses, the social value of reduced emissions is highest under this policy, reaching 1.25\% of global GDP in 2019. 
+
+\hspace*{6mm} Lastly, the paper explores optimal policies. The US has pledged to reduce emissions to 50\% of 2005 levels, and as of 2022, they are at 17\%. The optimal policy finds the most welfare-maximizing mix of producer-facing and consumer-facing emissions taxes to achieve the remaining 33\% reduction, and compares it to the welfare and economic outcomes of solely relying on a uniform carbon tax. The policy mixture is better for welfare, output, wages, and total factor productivity but comes with a lower reduction in carbon inequality relative to a uniform tax. All productivity groups experience welfare improvements under the optimal policy. The reason for this welfare improvement is because the optimal policy leverages the only tool that increases output. With the differential taxes on consumption and production emissions, higher consumption emissions taxes allows households to accumulate more savings, dampening the decline in capital demand and subsequently, output and wages. 
+  
+\subsubsection*{Related Literature}	
+\hspace*{6mm} This paper contributes to three strands of literature. The first strand of literature documents the oversized carbon footprints of the polluter elite. While the consumption of the very rich, in the form of their private jet use and luxury yachts, can be pollution intensive, the ways in which they generate income and wealth are also highly polluting. There are large differences in emissions accounting when using consumption-based or income-based approaches, which take into account that the ways in which people generate their incomes can also be polluting  \citep{starr2023assessing, starr2023income}. These differences become even more stark when using wealth based approaches (Chancel, 2024). While the top 1\% account for a small share of emissions when using consumption-based approaches (6\%), this triples to 15\% under the income approach, and quadrupling to 27\% under the wealth approach. My paper provides the first quantitative general equilibrium framework to explore carbon inequality as emissions arise heterogeneously from both consumption and production. The growing concern over carbon inequality have led to calls for policies targeting high emitters, such as a shareholder-based emissions tax, policies which this paper can evaluate in a general equilibrium setting.
+
+
+\hspace*{6mm} There is a second strand of literature that embeds heterogeneous agents and incomplete markets into the standard workhorse climate economy models \citep{golosov2014optimal, nordhaus2003warming}. These settings allow them to assess the distributional impacts of climate policy and arrive at optimal second-best climate policies. Heterogeneity in these models arise from differences in labour market productivity, generating a top 1\% wealth share with superstar productivity shocks. \cite{douenne2023optimal} add heterogeneity in initial wealth holdings. With Stone-Geary preferences over a basic dirty good, income heterogeneity leads to households who have varying consumption carbon footprints and they find that the optimal carbon tax is slightly lower. \cite{belfiori2024unequal} similarly have non-homothetic preferences, except find that the optimal carbon tax in a heterogeneous set-up should also be heterogeneous and higher for higher-income households. If a uniform tax is imposed, it is still Pigouvian in nature but is also lower than in a set-up without heterogeneity. The contribution of my paper lies in introducing rate of return heterogeneity, a dimension which allows the model to capture wealth-based carbon footprints and provides a richer framework to study how production heterogeneity shapes the emissions distribution. The presence of entrepreneurship provides additional mechanisms through which  the ownership of capital itself can can impact how taxes on emissions affect aggregate variables such as  output, emissions, and wages.  Moreover, this paper also introduces preferences over luxury dirty goods, allowing for the possibility of non-monotonic Engel curves in carbon consumption found in \cite{starr2023assessing}. With the extreme wealth concentration that this model can deliver through rate of return heterogeneity, it generates the types of people who indulge in super-polluting luxury consumption that are at the center of media attention. These extensions allow for a nuanced analysis of the role of targeted taxes, such as shareholder based emissions taxes or a luxury good tax. 
+
+\hspace*{6mm} The following papers feature firm heterogeneity and explore climate change policies and misallocation. \cite{lyubich2018regulating} document enormous heterogeneity in energy productivity, defined as output per dollar of energy input across U.S manufacturing plants within narrow industry categories. \cite{caggese2024climate} use a general equilibrium structural model and find that climate change induces factor reallocation, particularly of labour and not capital, potentially reducing allocative efficiency.  \cite{kim2023optimal} uses a quantitative firm dynamics model and finds that the optimal carbon tax is higher when emissions intensity and marginal products of production factors are negatively correlated, as a carbon tax improves allocative efficiency in the presence of financial frictions and adjustment costs. My paper moves beyond a firm-based approach to a firm-owner approach, capturing the rich individuals who control and benefit most from operating highly polluting firms. This has implications for wealth and carbon inequality, a dynamic obscured when solely using a firm-based approach. 
+
+
+
+\section{Model}
+
+
+
+\subsection{\normalsize Households}
+
+
+\hspace*{6mm} In this overlapping generations framework, agents make consumption and savings decisions each period. During their working life, they supply labour inelastically. After they retire, they draw on social security payments. They can operate an entrepreneurial endeavour at all periods, if their entrepreneurial productivity allows for it. Agents face uncertainty around their mortality every period, with the conditional probability $s_h$ of living from age $h-1$ to $h$. The unconditional probability of surviving till age $h$ is $\phi_{h}$. Mortality risk increases as they age, with the maximum possible age being $H$ years. If an agent dies, their child inherits all their wealth in the form of an accidental bequest. 
+
+In the benchmark model, the household's discounted expected lifetime utility is:
+
+\begin{equation}
+E_0(\sum_{h=1}^{H}\beta^{h-1}\phi_h u(c_h,d_{1h}, d_{2h})) 
+\end{equation}
+
+ The household derives utility $u(\cdot)$ from consuming the following three goods:  the final non-energy good $c_h$, direct consumption of a basic energy good $d_{1h}$  that is dirty for necessities such as heating homes, and direct consumption of a luxury energy good $d_{2h}$ that is dirtier than the basic good, such as the usage of a yacht or private jet. $\beta$ is the standard discount factor.
+
+\subsection{\normalsize Labour Market Specification}
+
+The labour market productivity process is modelled as in \cite{joe}: 
+
+\begin{equation} 
+\log \theta_{h}(\kappa_i)= g(h) + \kappa_{ih}
+\end{equation} 
+
+where an individual $i$'s labour market productivity consists of a component that varies with age $h$ and an idiosyncratic shock they receive during their working years, after which it stays constant. The shock evolves as follows during their career:
+
+
+ \[\kappa_{ih}=\rho_{\kappa} \kappa_{i,h-1}+\epsilon_{ih} \text{ where } \epsilon_{ih} \sim N(0, \sigma_{\kappa}^2) \text{ , } |\rho_{\kappa}| < 1 \]
+
+ At death, this shock is then imperfectly passed onto their offspring:
+
+ \[ \kappa_{i0}^{child}=\bar{\rho_{\kappa}} \kappa_{iR}^{parent}+v_{i} \text{ where } v_i \sim N(0, \bar{\sigma}_{\kappa}^2) \text{ , } |\bar{\rho}_{\kappa}| < 1\]
+
+All labour is then supplied inelastically, leading to the following aggregative effective labour supply:
+
+\begin{equation}
+L=\int \theta_{ih} didh
+\end{equation}
+
+\subsection{\normalsize Entrepreneurship}
+\hspace*{6mm} Agents operate their businesses to produce an intermediate differentiated good $x_{ih}$ using their entrepreneurial ability $z_{ih}$, which is a function of both their permanent underlying ability and idiosyncratic shocks they receive every period. They inherit the permanent component from their parents at birth according to the following process: 
+
+ \[log(\bar{z_i}^{child})=\rho_{\bar{z}} log(\bar{z_i}^{parent})+\epsilon_{\bar{z}} \text{ where }\epsilon_{\bar{z}}\sim N(0, \sigma_{\bar{z_i}}^2) \text{ , } |\rho_{\bar{z}} | < 1\]
+
+\hspace*{6mm} This imperfect transmission is a source of capital misallocation in \cite{GETAL} as fortunes may be amassed by the undeserving - children who are less talented than their parents - while children with high innate entrepreneurial abilities relative to their parents may inherit too little.  
+
+\hspace*{6mm} The stochastic component described below captures the positive or negative shocks to their baseline inherited ability that an entrepreneur may experience over the course of their life. They can either receive a positive shock which boosts their underlying ability, denoted by $\bar{z_i}^\lambda$. That boost, however, could dissipate the following year, leaving them with just their baseline ability $\bar{z_i}$. It could also disappear entirely, $z_{ih}=0$, forcing them to leave the business. 
+This stochastic variation will be key in generating some features of wealth inequality. 
+
+\begin{equation}
+  z_{ih} =
+    \begin{cases}
+      \bar{z}_{i}^\lambda & \text{if $\mathbbm{1}_{ih}=\mathcal{H}$}\\
+      \bar{z}_{i} & \text{if $\mathbbm{1}_{ih}=\mathcal{L}$}\\
+      0 & \text{if $\mathbbm{1}_{ih}=0$}
+    \end{cases}       
+\end{equation}
+
+with the associated transition matrix $\Pi_{\mathbbm{1}}$:
+
+     
+\begin{equation}
+\Pi_{\mathbbm{1}} = 
+\begin{pmatrix}
+1-p_1-p_2 & p_1 & p_2 \\
+0 & 1-p_2 & p_2 \\
+0 & 0 & 1 
+\end{pmatrix}
+\end{equation}    
+
+
+
+\subsection{\normalsize Final Good Producer}
+
+\hspace*{6mm} The final good $Y$ is an aggregation of the intermediate goods produced by the entrepreneurs and combined using labour supplied by households $L_y$. It is produced using the following Cobb-Douglas technology:
+
+   	
+   	   \begin{equation}
+      Y=Q^{\alpha}L_{y}^{1-\alpha}
+        \end{equation}
+          
+                
+       %Y=(1-D(s))Q^{\alpha}L_{y}^{1-\alpha} 
+            where $Q = (\int_{0}^{R-1}\int x_{ih}^\mu didh)^{1/\mu}$
+            %and $D(s)$ is the damage function mapping carbon dioxide in %the atmosphere to economic damages as a percent of the final-good.
+            
+$Q$ is the quality-adjusted capital-energy composite as firms will produce $x_{ih}$ with both capital and energy. $\alpha$ is the capital-energy composites share of production. Total factor productivity in the $Q$ sector is then defined as:
+
+\begin{equation}
+ TFP_Q = \frac{Q}{\int k_i^{\gamma_k} e_i^{\gamma_e} di}
+\end{equation}
+        
+   where the denominator contains the combination of raw inputs used by all the entrepreneurs, but unadjusted for quality.
+   
+   
+ The final good firm's maximization problem is then:
+   	
+%       \[
+%\begin{array}{ll}
+%
+%\underset{{x_{ih}}, L_{y}}{max} (1-D(s))(\int_{0}^{R-1}\int x_{ih}^\mu didh)^{\alpha/\mu}L_y^{1-\alpha} - \int_{0}^{R-1}\int p_{ih}x_{ih}didh-\bar{w} L_{y}  \\
+%
+%\end{array}
+%\]
+
+   	
+       \[
+\begin{array}{ll}
+
+\underset{{x_{ih}}, L_{y}}{max} (\int_{0}^{R-1}\int x_{ih}^\mu didh)^{\alpha/\mu}L_y^{1-\alpha} - \int_{0}^{R-1}\int p_{ih}x_{ih}didh-w L_{y}  \\
+
+\end{array}
+\]
+
+\begin{center}
+where wage per efficient units of labour = $w$
+\end{center}
+
+
+
+\subsection{\normalsize The Entrepreneur's Decision}
+
+\hspace*{6mm} The entrepreneur  $i$ at age $h$ operates a Cobb-Douglas production technology that combines their entrepreneurial abilities with capital and energy to produce a differentiated good $x_{ih}$. The simultaneous use of capital and energy implies that emissions reductions can come from the substitution of capital over energy, which can be interpreted as energy-efficiency improvements since capital does not have a carbon footprint in this model.
+
+\begin{equation}
+x_{ih}=z_{ih}k_{ih}{}^{\gamma_k}e_{ih}^{\gamma_e}
+\end{equation}
+
+  Using this technology, they solve the following static problem each period in which they maximize profit by choosing the level of capital, subject to a collateral constraint, for which they go to a financial market and engage in collateralized borrowing that depends on their initial assets. They also choose energy to be used where energy-use is subject to a shareholder-facing tax on production emissions $\tau_s$:
+
+
+      \[
+\begin{array}{ll}
+
+\pi(a,z) = \underset{k \le \vartheta(\bar{z})a, e }{max } \text{ } p(zk)\times (zk^{\gamma_k} e^{\gamma_e}) - (r+\delta) k - p_e(1+\tau_s)e \\
+
+\end{array}
+\]
+
+
+ 
+where $p(zk)$ comes from solving the final good producer's problem so that:
+      \[
+\begin{array}{ll}
+
+ p(zk)= \mathcal{R} \times (x)^{\mu-1} \text{ where } \mathcal{R} \equiv \alpha Q^{\alpha-\mu} L_y^{1-\alpha} 
+ \end{array}
+\]
+
+The firm's policy functions for capital and energy are:
+
+%\[k(a,z)=min\left[\left((1-D(s))\mathcal{R}\mu z^{\mu}\left(\frac{r+\delta}{\gamma}\right)^{\mu\left(1-\gamma\right)-1}\left(\frac{p_{e}(1+\tau_{s})}{1-\gamma}\right)^{-\mu(1-\gamma)}\right)^{\frac{1}{1-\mu}},\vartheta(z)a\right]\]
+%
+%\[e(a,z)=\left(\frac{p_{e}(1+\tau_s)}{(1-D(s))\mathcal{R}\mu(1-\gamma)z^{\mu}k(a,z)^{\gamma}{}^{\mu}}\right)^{\frac{1}{\mu\left(1-\gamma\right)-1}}\]
+%     
+     
+\[k(a,z)=min\left[\left( \mathcal{R}\mu z^{\mu}\left(\frac{r+\delta}{\gamma}\right)^{\mu\left(1-\gamma\right)-1}\left(\frac{p_{e}(1+\tau_{s})}{1-\gamma}\right)^{-\mu(1-\gamma)}\right)^{\frac{1}{1-\mu}},\vartheta(\bar{z})a\right]\]
+
+
+%\[e(a,z)=\left(\frac{p_{e}(1+\tau_s)}{(1-D(s))\mathcal{R}\mu(1-\gamma)z^{\mu}k(a,z)^{\gamma}{}^{\mu}}\right)^{\frac{1}{\mu\left(1-\gamma\right)-1}}\]
+  
+  
+\[e(a,z)=\left(\frac{p_{e}(1+\tau_s)}{\mathcal{R}\mu(1-\gamma)z^{\mu}k(a,z)^{\gamma}{}^{\mu}}\right)^{\frac{1}{\mu\left(1-\gamma\right)-1}}\]
+  
+
+
+
+
+\subsection{\normalsize Taxes and Transfers}
+\hspace*{6mm} The model has six taxes; a tax on capital income $\tau_k$, $\tau_l$ for labour income, $\tau_{d_1}$ for the basic dirty and $\tau_{d_2}$ for the luxury dirty good, $\tau_e$ on the energy firm, and $\tau_s$ for intermediate-good firms energy use. The capital income tax applies post-production. The government uses tax revenues to spend social security payments and on public goods, $G$, but the latter do not enter anywhere in the household's problem. In the benchmark equilibrium, there are no lump sum transfers. 
+
+\subsection{\normalsize Household's Problem}
+\hspace*{6mm} The household chooses how much of the non-energy and energy goods to be consumed, as well as their savings for the next period. After production, the individual's total wealth is:
+
+\begin{equation}
+ Y(a,z)=a+\pi(a,z)(1-\tau_k) 
+\end{equation}
+  
+  
+  They solve the following recursive problem: \[
+\begin{array}{ll}
+V_h(a,z,\kappa)=
+\underset{c, a',d_1,d_2}{max} \; u(c,d_1,d_2)+\beta s_{h+1}V_{h+1}(a',z',\kappa') \\
+
+\end{array}
+\]
+
+\begin{center}
+s.t $c+(p_e+\tau_{d_1})d_1+\frac{(p_e+\tau_{d_2})}{A_2} d_2+a'=Y(a,z)+(1-\tau_l)w\theta_h(\kappa) + T $
+
+where $\tau_{d_i}$ is an excise tax on the dirty goods and $T$ is a lump-sum transfer
+\end{center}
+
+The two dirty goods will be produced using a linear technology where energy is the only input. The luxury good will use $\frac{1}{A_2}$ times more energy.
+    
+       
+  The retiree's problem is the same except they no longer receive wage income and instead are given a social security payment.
+ 
+ 
+\subsection{\normalsize Energy Sector}
+\hspace*{6mm} Energy production\footnote{One can embed a climate model directly into the analysis, creating a feedback loop between climate dynamics and economic decisions by mapping emissions from the energy sector directly back to production damages. A detailed exploration of the first approach is provided in the appendix.} is modelled to resemble stylized features of only coal extraction for simplicity, using a technology linear in labour:
+\begin{equation}
+e=A_{e}L_{e}
+\end{equation}
+Energy firms face carbon taxes $\tau_e$ on their production, with their maximization problem as follows:
+\[\underset{L_{e}}{max} (1-\tau_e)p_{e}e-wL_{e}\]
+s.t  \[e=A_{e}L_{e}\]
+
+Energy produced in the energy sector is used by all the intermediate good firms or directly consumed by households in the form of the basic $d_1$ or luxury good $d_2$, where each unit of the luxury dirty requires more energy to be produced than the basic good. The energy market clearing condition is:
+
+\[e=\int e_{i}di+\int d_{1i} di + \frac{\int d_{2i} di }{A_2}\]
+
+
+
+\subsection{\normalsize Recursive Competitive Equilibrium}	
+Let $\Gamma(h,a,\textbf{S})$ be the stationary distribution of individuals over all ages, assets, and the state variables. Then:
+	\begin{enumerate}
+	
+        \item The functions $c_h(a, \textbf{S})$,$d_{1h}(a, \textbf{S})$,$d_{2h}(a, \textbf{S})$, $a_{h+1}(a, \textbf{S})$, and $k(a, z)$, $e(a, z)$ are solutions to the household's static and dynamic problems, given $p(x)$, $w$, $r$, $p_e$ and taxes $\{\tau_k, \tau_\ell, \tau_e, \tau_{d_1},\tau_{d_2}, \tau_{s} \}$
+        
+        \item The final goods producers solution yields $p(x)$ 
+        
+        \item Financial, capital markets, and energy markets clear:
+        
+   \begin{center}
+        $Q = (\int_{h,a,\textbf{S}}(z  k(a,z)^{\gamma_k} e(a,z)^{\gamma_e})^\mu d\Gamma(h,a,\textbf{S}))^{1/\mu}$ 
+                 $\int_{h,a,\textbf{S}}k(a,z)d\Gamma(h,a,\textbf{S})=\int_{h,a,\textbf{S}}a(a,z)d\Gamma(h,a,\textbf{S})$
+                 
+                 \[e=\int e(a,z)d\Gamma(h,a,\textbf{S})+\int d_{1}(a, \textbf{S}) d\Gamma(h,a,\textbf{S}) +\frac{\int d_{2}(a, \textbf{S}) d\Gamma(h,a,\textbf{S})}{A_2} \]
+    
+       
+   \end{center}
+   \item The labour market clearing condition delivers $\bar{w}$:
+           
+   \begin{center}
+     $L_e+L_y=\int_{h, a, \textbf{S}} \theta_h(\kappa)d\Gamma(h,a,\textbf{S})$
+             
+   \end{center}
+
+    \item The government budget constraint is satisfied:
+  \end{enumerate}
+
+    \[
+\begin{array}{ll}
+
+
+ G + T + SSP= &\tau_k \int_{h,a,\textbf{S}}(ra+\pi(a,z))d\Gamma(h,a,\textbf{S})\\ & + \tau_s p_e \int_{h,a,\textbf{S}}e(a,z)d\Gamma(h,a,\textbf{S})\\ & + \tau_\ell \int_{h<R,a,\textbf{S}}w\theta_h(\kappa, e)d\Gamma(h,a,\textbf{S}) \\&
+       + \tau_e p_e \cdot e + \tau_{d_1} p_e  \int_{h,a,\textbf{S}} d_{1h}(a, \textbf{S})d\Gamma(h,a,\textbf{S}) \\&
++       
+     \frac{\tau_{d_2} p_e }{A_2} \int_{h,a,\textbf{S}} d_{2h}(a, \textbf{S})d\Gamma(h,a,\textbf{S})
+
+\end{array}
+\]
+
+where SSP is total pension payouts: $\int_{h \ge R, a, \textbf{S}}y^R(\kappa_{R-1})d\Gamma(h,a,\textbf{S})$
+\
+
+
+%
+%\begin{frame}{The Government}
+%
+%\alert{Government Budget Constraint}
+%\end{frame}
+%
+% 
+%
+
+
+\section{Calibration} 
+
+\hspace*{6mm} \hyperref[fig:presetparameters]{Table 1} summarizes all the preset parameters. These parameters are not used to match moments from the model to data moments. They are taken straight from the data or from values used in the literature. \hyperref[fig:internalparameters]{Table 2}  contains the moments that are calibrated with the model so that the model generates moments that match the data.
+
+  \begin{table}[ht]
+\centering % used for centering table
+
+\caption{Preset Parameters}
+
+\begin{tabular}{l c c c } % centered columns (4 columns)
+
+\hline\hline %inserts double horizontal lines
+ Parameter &   &  Value \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+Capital income tax  & $\tau_k$ & 23.65\%\\
+Labour income tax & $\tau_l$ & 18.88\% \\ % inserting body of the table
+%Consumption tax & $\tau_c$ & 7.54\% \\ % inserting body of the table
+Intragenerational corr. of labour FE & $\rho_{\kappa}$ & 0.937\\
+Std. Dev. of the above & $\sigma_{\kappa}$ & 0.201 \\
+Intergenerational corr. of labour FE & $\bar{\rho}_{\kappa}$ & 0.568\\
+Std. Dev. of the above & $\bar{\sigma}_{\kappa}$ & 0.184 \\
+Intergenerational corr. of entr. ability & $\rho_{\bar{z}}$ & 0.1\\
+Capital-energy composite share & $\alpha$ & 0.34  \\
+Substitution parameter in CES prod. fn. & $\mu$ & 0.9\\
+Luxury Good Energy Intensity & $A_2$ & 1\\
+Entrepreneur's productivity boost & $\lambda$ & 1.5 \\
+Probability of going from $\mathcal{H}$ to $\mathcal{L}$ & $p_1$ & 0.05 \\
+Probability of losing entrepreneurial ability & $p_2$ & 0.03\\
+
+Depreciation Rate & $\delta$ & 0.05\%\\[1ex] % [1ex] adds vertical space
+
+\hline 
+
+\end{tabular}
+\label{fig:presetparameters}
+\captionsetup{font=footnotesize}
+%\caption*{Notes: This table contains the list of pre-set parameters taken from the literature. }
+\end{table}
+
+\begin{table}[h]
+
+\caption{Internally Calibrated Parameters}
+    \setlength{\extrarowheight}{5pt}
+    \centering
+    \scalebox{0.9}{
+        \begin{tabular}{l c p{7cm} c c}
+            \hline\hline
+            Parameter &  & Method & Data & Model\\ [0.5ex]
+            \hline
+            Discount factor & $\beta$ & Target K/Y & 3.0 & 2.7 \\
+            $\sigma$ of perm. entr. ability & $\sigma_{\epsilon_{\bar{z}}}$ & Target Top 0.1\% wealth share (Smith et al. (2023)) & 15.7\% & 15.5\%\\
+            Luxury good parameter & $\bar{d_2}$ & Target so that only top 0.1\% consume &  &  \\
+             Household subsistence level & $\bar{d_1}$ & Target bottom 50\% share of emissions (Chancel and Rehm (2023)) & 17\% & 17\% \\
+          Relative pref. for $d_1$ & $\epsilon_1$ & Target average energy expenditure share for bottom 99\% relative to top 1\% (Starr et al. (2023)) &  1.6 & 1.7 \\
+          
+            Relative preference for c & $\epsilon_{2}$ & Target share of emissions from IG sector (Chancel and Rehm (2024)) & 70\% & 70\% \\
+           
+           Energy share in IG firm prod. & $\gamma_e$ & Target share of top 0.1\% emissions (Chancel and Rehm (2024)) & 15.3\%  &  15.6\%        \\
+                     
+            Energy firm productivity & $A_{e}$ & Target energy share of output & 4\% & 4\% \\
+            %Luxury good production parameter & $A_2$ &  \\
+           %Climate damage parameter & $\eta$ & Target output loss (Dietz and Stern (2015)) & 1.1\% & 1.1\% \\
+          
+
+            \hline
+        \end{tabular}
+    }
+  %  \captionsetup{font=footnotesize}
+% \caption*{Notes: This table contains the list of internally calibrated parameters.}
+       \label{fig:internalparameters}
+\end{table}
+
+
+\subsubsection*{ Demographics}
+The maximum age and retirement age values are taken from \cite{GETAL}, such that $H=81$ and $R=45$. I also follow them in taking conditional mortality risks from \cite{bellandmiller}.
+
+\subsubsection*{Preferences}
+
+Preferences are non-homothetic to capture that expenditure shares will be different across households:
+
+\[ u(c,d_{1},d_{2})=\epsilon_{1} ln(d_{1}-\bar{d_{1}})+\epsilon_{2} ln(c)+(1-\epsilon_{1}-\epsilon_{2})ln(d_{2}+\bar{d_{2}}) \]
+
+\hspace*{6mm} The luxury good parameter, $\bar{d_2}$, is set so that only the top 0.1\% of the wealth distribution consume it. The relative preference for the non-energy good, $\epsilon_2$, determines the demand for the final good which ultimately governs the share of emissions coming from the intermediate good sector. I target this to be 70\% from \cite{chancelandrehm}. The subsistence level of the basic dirty good, $\bar{d_1}$, targets the bottom 50\% share of emissions to be 17\%, also from \cite{chancelandrehm}. Lastly, the relative preference for the basic dirty good, $\epsilon_1$, is set to target the average energy expenditure share for the bottom 99\% relative to the top 1\%, which is 1.6 from \cite{starr2023assessing}.  $\beta$ is chosen to target the standard capital to output ratio of 3, when $\delta=0.05.$
+
+\subsubsection*{Production Parameters}
+\hspace*{6mm} The energy share in the entrepreneur's technology, $\gamma_e$, targets the share of emissions by the top 0.1\% which is 15.3\% from  \cite{chancelandrehm}. The reasoning for this is that for the top groups, the bulk of their emissions is arising from their entrepreneurial endeavourers. Capital's share in the entrepreneur's technology is then simplified to be $\gamma = 1-\gamma_k$, primarily to reduce computational complexity. For the final good firm, the term $\alpha$ denotes capital and energy's share of output, which is taken from \cite{golosov2014optimal} to be 34\%. For the energy firm, their productivity parameter is $A_e$, and is set to target the standard energy share of output of 4\% .
+
+
+
+%  \begin{table}[ht]
+%   \setlength{\extrarowheight}{5pt}
+%\centering % used for centering table
+%
+%\caption{Jointly Calibrated Parameters}
+%%\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} l ccccc}
+%\scalebox{0.9}{
+%\begin{tabular}{l c c c c c } % centered columns (4 columns)
+%
+%\hline\hline %inserts double horizontal lines
+% Parameter &  &  Value & Data Target & Value \\ [0.5ex] % inserts table
+%%heading
+%\hline % inserts single horizontal line
+%%Discount factor & $\beta$ & 0.9835 & K/Y & 3.0 \\ % inserting body of the table
+%%$\sigma$ of perm. comp. of entr. ability & $\sigma_{\epsilon_{\bar{z}}}$ & 0.6448 &  Top 1\% wealth share & 41.8\% \\
+%Estate tax brackets & $\{\bar{B}\}$ & $\{475.37,..,520.77\}$ &  $\frac{Bracket Value}{Average Household Networth}$ & $\{8.835,..,9.698
+%\}$ \\
+%
+%%\hline 
+%
+%\end{tabular}}
+%\end{table}
+
+
+%
+%\cite{abel1987specification} have a model without uncertain mortality in which the implied weights on the degree of altruism range from 0.23 to 1.00, depending on the values of interest rate and coefficient of relative risk aversion chosen. A next step is to use their approach to find a better measure for altruism.
+
+\subsubsection*{ Labour Productivity}
+\hspace*{6mm} I use the Tauchen method to construct a grid for the labour productivity shocks which has 5 values. From \cite{joe}, during their working period, the AR(1) process governing labour productivity has a persistence parameter of $\rho_\kappa=0.937$ and $\sigma_{\kappa}=0.201$, with the intergenerational parameters as  $\bar{\rho}_{\kappa}=0.568$ and $\bar{\sigma}_{\kappa}=0.184$. The life cycle component function is taken from \cite{GETAL} to be $g(h) = exp \left( \frac{-(h-1)^2}{1800}-\frac{(h-1)}{30} \right)$, which yields a hump-shaped productivity process which increases during the prime working years, reaches a peak, and then decreases as the individual ages.
+ 
+\subsubsection*{ Entrepreneurial Productivity}
+\hspace*{6mm} For the entrepreneurship process, the standard deviation of the intergenerational correlation of entrepreneurial ability targets the top 0.1\% share of wealth which is taken from the literature to be 15.7\% from \cite{smithzidarzwick}. The grid for the entrepreneurial shocks is constructed using the Tauchen method with 9 grid values. The rest of the parameters governing the entrepreneurship process are taken from \cite{GETAL}. The productivity boost when receiving a positive shock, $\lambda=1.5$; the probabilities of losing the positive shock and the entrepreneurship abilities completely are $p_1=0.05$ and $p_2=0.03$, respectively. Lastly, the intergenerational correlation of entrepreneurial ability is set to be 0.1.
+
+\subsubsection*{Collateral Constraints}
+\hspace*{6mm} The functional form for $\vartheta(\bar{z_i})=1+0.025(i-1)$ for $i=1,..,9$ follows the specification in \cite{GETAL}. This ensures that the lowest entrepreneurial productivity group cannot borrow and the ability to borrow increases with entrepreneurial ability.   
+
+\subsubsection*{ Taxation}
+\hspace*{6mm} I use the average tax rates for labour and capital income generated using the method in \cite{mcdaniel2007average}, which a capital income tax of 23.65\% and labour income tax of 18.88\%.
+
+\section{Benchmark Model Performance}
+
+\hspace*{6mm} To assess the performance of the benchmark model, I  do not target the top 1\% and top 10\% shares of wealth and assess how close they come to the data. The wealth distribution of the model does a good job matching the data, with the top 1\% and top 10\% wealth shares very close to their data counterparts.
+
+
+ \begin{table}[h]
+ \caption{Shares of wealth by each group}
+   \centering
+   \begin{tabular}{l c c c}
+     \toprule
+     & \multicolumn{3}{c}{Wealth Distribution} \\
+     \cmidrule(lr){2-4}
+     Group & {Top 0.1\%}  & {Top 1\%} & {Top 10\%}  \\
+     \midrule
+     Model &    15.5\%  &   35.9\%  &   68.5\%  \\
+     Data  &    15.7\%  &   33.7\%  &   68.6\% \\
+     \bottomrule
+   \end{tabular}
+    \captionsetup{font=footnotesize}
+ \caption*{Notes: For each wealth group, I compare the model's share of aggregate wealth for that group to the value in the data. }
+
+ \end{table}
+ 
+\hspace*{6mm} For the emissions distribution, I target the top 0.1\%  and bottom 50\% share of national emissions and then assess how close the top 1\%, top 10\%, and middle 40\% shares of emissions are to the data. The model overshoots the shares of emissions for the top 1\% and 10\% by 6 percentage points and 8 percentage points respectively, while underestimating the share of emissions of the middle 40\% by almost half. This is to be expected, given the absence of a mid-tier polluting consumption good, since this model only features basic or luxury dirty goods. 
+ 
+ 
+ \vspace{1em}
+ \begin{table}[ht]
+  \caption{Shares of emissions by each wealth group}
+   \centering
+   \begin{tabular}{l c c c c c }
+     \toprule
+     & \multicolumn{5}{c}{Emission Distribution} \\
+     \cmidrule(lr){2-6}
+     Group & {Top 0.1\%} & {Top 1\%} & {Top 10\%} & {Mid 40\%} & {Bottom 50\%} \\
+     \midrule
+    Model &    15\% &   33\% &   59\% &  18\%  &   17\%     \\
+     Data & 15\% & 27\% & 51\% & 32\% & 17\% \\
+     \bottomrule
+   \end{tabular}
+    \captionsetup{font=footnotesize}
+ \caption*{Notes: For each wealth group, I compare the model's share of aggregate carbon emissions for that group to the value in the data. }
+
+ \end{table}
+ 
+ 
+
+\section{Comparative Analysis of Tax Instruments}
+
+\hspace*{6mm}  In this section, we assess the impact of the four tax instruments on key economic and environmental outcomes: $\tau_s$, the shareholder emissions tax, $\tau_{d_1}$, the basic good tax, $\tau_{d_2}$ the luxury good tax, and $\tau_e$, the carbon tax. Each is varied one at a time, from 10\% to 30\%, while keeping the others fixed to provide intuition on the various channels through which they operate in what will be a steady-state to steady-state comparison. Extra revenue generated from the taxes, net of social security payments and the benchmark government spending, are then rebated back to households in a lump sum fashion.
+
+\subsection{Climate and Energy Response}
+
+\begin{figure}[h!]
+    \centering
+    \text{Figure 2: Climate and Energy Sector}\\  % Manually adding Figure number at the top
+	\vspace{0.5em}
+
+    \includegraphics[scale=0.57, trim=0 30 0 0, clip]{../Code/Output/combinedA_nd.pdf} 
+    \captionsetup{font=footnotesize}
+    	\vspace{-2em}
+         \caption*{\textit{Notes:} This figure shows the impact of introducing four tax policies one at a time, while holding others constant, on carbon emissions (panel a) and labour in the energy sector (panel b) in the new experimental steady state relative to the values in the benchmark steady state equilibrium}
+    \label{fig:energy}
+   
+\end{figure}
+
+
+\hspace*{6mm} Beginning with the climate and energy sector, emissions decline under all these tax policies, shown in \hyperref[fig:energy]{Figure 2(a)}, with a negligible decline under $\tau_{d_2}$, the luxury dirty good tax. A uniform carbon tax has the largest bite, with the shareholder tax reducing emissions the second most. The decline in equilibrium energy-use results in labour reallocating away from the energy sector to the final goods sector. Due to the energy firm operating a linear technology, all of the responses here are also linear.
+
+\begin{figure}[h]
+    \centering
+    \text{Figure 3: Decomposition of the change in output}\\  % Manually adding Figure number at the top
+	\vspace{0.5em}
+        \includegraphics[scale=0.5, trim=0 30 0 0, clip]{../Code/Output/combined_decomp_nd.pdf}     
+		    \label{fig:decomposition}
+		    \captionsetup{font=footnotesize}
+		            \caption*{\textit{Notes:} This figure decomposes the response of output in the model to introducing each policy one at a time into three different channels: the labour reallocation sector, total factor productivity gains, and the change in raw inputs.}
+   
+\end{figure}
+
+\subsection{Output}
+
+\hspace*{6mm}  The response of output to all four policies illustrates how taxes on consumption emissions versus production emissions induce different economic outcomes. With a tax on consumption emissions, entrepreneurs increase their capital and energy demand, due to increased capital accumulation and demand for the non-energy substitute made possible by the basic energy good becoming more expensive. This rise in entrepreneurial activity makes the basic dirty good tax the only abatement instrument that \textit{increases} output. \hyperref[fig:decomposition]{Figure 3}
+ decomposes the change in output into changes arising from total factory productivity, labour reallocation, and raw inputs using the following equation:
+
+\begin{equation}
+log \left( \frac{Y'}{Y} \right) =\alpha log \left(\frac{TFP'}{TFP}\right)+(1-\alpha) log \left(\frac{L_y'}{L_y}\right)+\alpha log\left(\frac{\int k_i^{' \gamma} e_i^{' 1-\gamma}di}{\int k_i^\gamma e_i^{1-\gamma}di} \right)
+\end{equation}
+
+
+\begin{figure}[h]
+    \centering
+        \text{Figure 4: Aggregates}
+        \vspace{0.5em}
+    \includegraphics[scale=0.5, trim=0 35 0 0, clip]{../Code/Output/combinedB_nd.pdf} 
+           \captionsetup{font=footnotesize}
+        \caption*{\textit{Notes:}  This figure contains the percentage increase from the benchmark equilibrium of (a) Non-energy consumption and (b) raw capital stock in response to introducing each policy one at a time}
+       \label{fig:aggregates}
+
+\end{figure}
+
+The raw inputs channel is the main driver of the difference in the output response. While a direct tax on the energy-use of entrepreneurs will reduce their raw-inputs into production, with the production share of emissions falling accordingly, the opposite occurs with a tax on consumption. Taxing the basic good results in households demanding more of the non-energy final good $c$, shown in \hyperref[fig:aggregates]{Figure 4(a)}, to the extent their preferences allow. At the same time, as a tax on consumption reduces their incentive to consume, households accumulate more raw savings, shown in \hyperref[fig:aggregates]{Figure 4(b)}, relaxing the collateral constraints of those operating at their constrained level of capital. Since there are no taxes on the entrepreneur's energy-use, they can adjust their policy functions for $e$ and $k$, leading to the raw input use rising slightly. As a consequence, the share of emissions attributed to the production sector rises. The labour reallocation channel increases output under all policies, and is strongest under $\tau_e$  since energy-use declines the most with a uniform economy-wide emissions tax.
+
+
+
+\subsection{Misallocation and Wealth Inequality}
+\hspace*{6mm} The third channel is the response of TFP to these policy experiments. The gains from improvements in TFP contribute positively to changes in output under all these policy experiments, with a negligible impact under $\tau_{d_2}$. Misallocation is improving under these taxes due to the response of different groups to the policies. Firstly, for constrained entrepreneurs, who are generally highly productive, they cannot operate at their desired optimal level of capital. When taxes such as $\tau_s$ and $\tau_e$ raise the price of energy inputs, they force entrepreneurs to scale back their energy-use, shifting down the marginal returns from operating one more unit of capital. Had they been unconstrained, they would have reduced their capital use (albeit less than they scale back energy use). For some constrained firms, this new optimal level of capital is still far from their constraint, although closer than before, and so their capital use remains unchanged. However, there are some constrained firms with relatively higher wealth, they now find themselves able to operate at the new lower optimal level of capital and so there are fewer constrained firms than before. Lastly, for the unconstrained groups, they reduce their capital-use uniformly. Since the bulk of capital reduction is done by unconstrained firms, who are generally less productive, while the most productive firms' capital-use remains unchanged, misallocation improves under the shareholder and uniform emissions tax. Capital becomes more concentrated at the top, with wealth inequality rising for the top 0.1\%, 1\%, and 10\% under these two taxes as shown in \hyperref[fig:wealth]{Figure 5}. 
+
+
+\begin{figure}[h! btp]
+    \centering
+    \text{Figure 5: Change in shares of wealth held by each wealth group}
+     \vspace{0.5em}
+    \includegraphics[scale=0.57, trim=0 35 0 0, clip]{../Code/Output/combinedC_nd.pdf} 
+               \captionsetup{font=footnotesize}
+         \caption*{\textit{Notes:} The percentage change from the benchmark equilibrium in the share of wealth held by the Top 0.1\%, 1\%, 10\%, and Bottom 50\% wealth groups }
+    \label{fig:wealth}
+
+\end{figure}
+
+
+\hspace*{6mm} Similarly, a consumption tax on the basic dirty good improves misallocation, although to a lesser degree and for different reasons. On one hand, reduced demand for the basic dirty good shifts people to the substitute. Increased demand for the final good $c$  results in unconstrained firms increasing their use of capital. At the same time, with the reduced incentive to consume, households accumulate more wealth which relax the collateral constraints of the constrained entrepreneurs. The tension then is then whether the collateral constraint can rise faster than the new desired optimal level of capital. For the most productive constrained firms, the loosening of the constraints dominates, and we see shares of wealth held by the top 1\% and 10\% rise. Since capital is now more concentrated in the hands of the most productive, wealth inequality rises across the key groups. The same cannot be said for carbon inequality.
+
+%\begin{figure}[H]
+ %   \centering
+  %  \caption{Interest Rate}
+   % \includegraphics[scale=0.45]{../Code/Output/interest_rate.pdf} 
+    
+% \end{figure}
+
+
+
+
+\subsection{Carbon Inequality}
+
+\begin{figure}[hbtp]
+    \centering
+    \text{Figure 6: Share of emissions for each group}
+    \vspace{0.5em}
+    \includegraphics[scale=0.57, trim=0 35 0 0, clip]{../Code/Output/combinedD_nd.pdf} 
+    \captionsetup{font=footnotesize}
+ \caption*{\textit{Notes:} For each wealth group, the percentage change in their share of aggregate emissions arising from both production and consumption, relative to the benchmark equilibrium, is shown for all the experiments.}
+      
+        \label{fig:carboninequality}
+\end{figure}
+
+\hspace*{6mm} While wealth inequality is rising for top groups, carbon inequality is declining under $\tau_s$ and $\tau_e$ due to the heterogeneous response from different groups of firms. \hyperref[fig:carboninequality]{Figure 6} illustrates the response of carbon inequality to the experiments. 
+
+For unconstrained firms, energy efficiency is pinned down by the following equation:
+
+\begin{equation}
+\frac{e}{k}=\frac{(1-\gamma)}{\gamma}\frac{\left(r+\delta\right)}{p_{e}(1+\tau_s)}
+\end{equation}
+
+
+\hspace*{6mm} With a rise in energy prices through $\tau_e$ or the implementation of a shareholder tax on emissions, the relative price of capital to energy falls. Production reallocates to more capital as firms substitute away from energy. For unconstrained firms, this effect will be uniform and independent of an entrepreneur's ability. 
+
+For the constrained, how energy per capital responds is dependent on their productivity and the extent of their leveraging:
+
+\begin{equation}
+\frac{e}{k}=\left(\frac{\mathcal{R}\mu(1-\gamma)z{}^{\mu}}{p_{e}(1+\tau_{s})\left(\vartheta(\bar{z})a\right)^{1-\mu}}\right)^{\frac{1}{1-\mu\left(1-\gamma\right)}} 
+\end{equation}
+
+\hspace*{6mm}  While a rise in energy prices or $\tau_s$ will reduce their energy intensity, keeping all else fixed, this interacts with the entrepreneur's ability and asset holdings. For constrained entrepreneurs of the same ability, the one with more assets will have lower energy use relative to capital. This is because they are closer to their desired level of capital through leveraging than their counterpart with the same abilities but less leverage. Alternatively, for the same level of level of wealth, the more productive constrained entrepreneur will have a higher energy-use relative to capital. They are further from their desired level of capital than the less productive entrepreneur. Unable to operate the optimal level of capital, limited by their assets, they resort to using more energy thus pushing up their $\frac{e}{k}$ ratios compared to an unconstrained firm. This implies that any policies that reduce the fraction of constrained entrepreneurs also reduces their $e/k$. 
+
+\hspace*{6mm} These differing $e/k$ ratios for constrained and unconstrained firms also has implications for how different groups adjust their energy to capital ratios after a policy change. For an unconstrained firm, the higher relative cost of energy to capital will induce a substitution towards capital. But for the constrained firm, they cannot easily shift to capital as they are near their constraint. So they must reduce their energy-use more drastically while capital remains fixed, experiencing steeper declines in their energy-use relative to capital. In short, the energy to capital ratio for the unconstrained firm is the least sensitive to the shareholder emissions tax and carbon tax as they can operate more flexibly and reallocate capital and energy as needed. On the other hand, the more capital-constrained a firm is - either due to high entrepreneurial productivity or low assets - the more sensitive their energy to capital-use will be to policy changes. 
+
+
+\hspace*{6mm} The constrained firms, at the same time, are the most wealthy and productive. As they are reducing their energy use more aggressively relative to other groups, this heterogeneous response curbs carbon inequality. The share of emissions attributed to top groups falls under both the shareholder emissions tax and the uniform carbon tax. The ability of both these taxes to disproportionately target emissions at the top  suggests the importance of a carbon tax that is not only consumer-facing but also producer-facing. In the absence of an implementable carbon tax, a shareholder tax operates in the same way and can reduce carbon inequality while also reducing emissions.
+
+\hspace*{6mm} Under a purely consumer-facing tax on basic fuel goods, $\tau_{d_1}$, carbon inequality rises for the top groups. For the unconstrained entrepreneurs, interest rates rise in equilibrium, shown in \hyperref[fig:interest]{Figure 7(b)}, while the price of energy does not move. With a rise in the relative price of capital to energy, firms substitute for more energy, increasing their energy to capital ratios. For constrained firms, their collateral limits their production abilities and $r$ does not appear in equation (13). With no change in prices, these firms experience a rise in the marginal productivity of their energy inputs through higher demand for their goods, shown in \hyperref[fig:interest]{Figure 7(a)}, through a rise in $\mathcal{R}$, resulting in greater energy-use as well. Since both groups experience a rise in their energy to capital ratios, the relative energy use of all entrepreneurs rises and as there are more entrepreneurs in top wealth groups relative to the rest of the population, the shares of emissions at the top rise. 
+
+
+\begin{figure}[h]
+    \centering
+    \text{Figure 7: $\mathcal{R}$ and Interest Rate }
+ 	
+    \includegraphics[scale=0.5, trim=0 30 0 0, clip]{../Code/Output/interest_nd.pdf} 
+    \captionsetup{font=footnotesize}
+       \caption*{\textit{Notes:} Panel (a) shows the percentage change from the benchmark equilibrium of $\mathcal{R}$, Panel (b) the interest rate response, to each experiment.}
+     \label{fig:interest}
+\end{figure}
+
+\subsection{Labour Market}
+
+\hspace*{6mm} Wages in equilibrium fall under $\tau_s$ and $\tau_e$, a result of the reallocation of labour towards the final good sector and declining $Q$, shown in \hyperref[fig:wage]{Figure 8}. Labour-income dependent households do not benefit from the improved efficiency of capital allocation because the declining energy-use depresses $Q$.
+
+\begin{figure}[hbtp]
+    \centering
+    \text{Figure 8: Wages and Transfers}
+
+    \includegraphics[scale=0.57, trim=0 30 0 0, clip]{../Code/Output/wage_nd.pdf}    
+    \captionsetup{font=footnotesize}
+        \caption*{\textit{Notes:} These graphs depict the percentage changes in (a) wages paid by the final good and energy sectors and (b) rebated lump sum transfers as a share of average labour income from the benchmark steady state equilibrium for each set of experiments.}
+     \label{fig:wage} 
+\end{figure}
+
+\hspace*{6mm} Wages do not fall off under the basic dirty good tax the way they react under the other taxes due to the raw inputs channel. Under this consumption tax, households have more savings, relaxing the collateral constraint for the constrained households. The demand for the final good rises and entrepreneurs operate more capital to meet it. As Q rises, wages are not depressed as in the $\tau_s$ and $\tau_e$ scenarios. This difference in impact on wages highlights that taxes on consumption emissions versus production emissions induce different economic outcomes. The increased savings from falling $d_1$ consumption relaxes collateral constraints, increases access to capital, and thus makes the production sector a more significant source of emissions, as can be seen in \hyperref[fig:sector]{Figure 9}.
+
+
+\begin{figure}[hbtp]
+    \centering
+    \text{Figure 9: Share of emissions by each sector }
+
+    \includegraphics[scale=0.40, trim=0 30 0 0, clip]{../Code/Output/combinedE_nd.pdf} 
+    \captionsetup{font=footnotesize}
+        \caption*{\textit{Notes:} This graph breaks down the share of aggregate emissions arising from each of the three sectors: (a) production emissions share, arising from entrepreneurial energy use, (b) Basic dirty good share, arising from the aggregate consumption of the basic dirty good, and (c) luxury dirty good share, which is the share of emissions arising from the total consumption of luxury goods.}
+     \label{fig:sector}
+    
+\end{figure}
+
+
+\hspace*{6mm} Although wages are declining under the shareholder and emissions tax, the additional source of government revenue results in transfers that range from 0.5\% to 2\% of average labour income, which will have implications for welfare.
+
+\subsection{Welfare}
+\hspace*{6mm} The consumption welfare equivalents for both newborns and the entire population are shown in \hyperref[fig:welfare]{Figure 10}. These are welfare changes that ignore the reduction in emissions and purely arise from the impact of these taxes on the economy. Under the emissions tax, welfare is declining. Although transfers rise, it is not enough to offset the fall in wages, with wages falling the most under this regime, due to the large quality-adjusted capital-energy composite decline and labour reallocation towards the final good sector. All three goods which contribute to a household's utility are lower in equilibrium - $c$, through the imposition of a shareholder tax, $d_1$ through the basic dirty good tax, and $d_2$ through the luxury good tax. 
+
+\begin{figure}[h]
+   	\centering
+    \text{Figure 10: Welfare}
+    \includegraphics[scale=0.5, trim=0 30 0 0, clip]{../Code/Output/combined_welfare_nd.pdf} 
+    \captionsetup{font=footnotesize}
+    \caption*{\textit{Notes}: The left panel shows the average welfare in terms of consumption equivalents for newborns entering into the economy. The right panel shows average population consumption equivalents.}
+      \label{fig:welfare}
+    
+\end{figure}
+
+
+\hspace*{6mm}  However, under the shareholder-based tax, consumption equivalents rise. This is due to the rise in the relative importance of the basic dirty good and luxury dirty good as the consumption of both these goods rise. Since there is no direct tax on the consumption of the two dirty goods, which also enter into a household's utility function, households consume more of these goods because although the energy price, $p_e(1+\tau_s)$ faced by the entrepreneur rises, $p_e$ itself does not, making energy for consumption relatively cheaper than energy for production. Similarly, while a basic good tax reduces the consumption of $d_1$, people substitute away to the non-energy good to the extent that their preferences allow, and a higher consumption of $c$ dampens the negative effect on welfare from lower $d_1$ consumption. These channels highlight the different economic behaviours induced by taxes on consumption versus production-emissions.
+
+
+\begin{figure}[h! tbp]
+    \centering
+    \text{Figure 11: Social value of emissions declining }
+    
+    \includegraphics[scale=0.57, trim=0 30 0 0, clip]{../Code/Output/combined_SCC_nd.pdf} 
+    \captionsetup{font=footnotesize}
+    \caption*{\textit{Notes:} The left panel uses a social cost of carbon of \$120 USD to arrive at the social value of emissions reductions under each policy. Units are in billions USD. The right panel depicts the value of these reductions relative to global GDP in 2019.}
+          \label{fig:SCC}
+\end{figure}
+
+\hspace*{6mm}  The above welfare estimates do not take into account the value of reduced emissions.  The monetary value of the social benefit of emissions reductions from each policy is given by multiplying the social cost of carbon by the emissions abated under each policy. I use the most conservative estimate of the social cost of carbon provided by the United States' Environmental Protection Agency, which is a SCC of \$120 USD in 2020 dollars per metric ton of $CO_2$ using a discount rate of 2.5\% \citep{epa2023socialcost}.  Emissions from fossil fuel and industry are 37 gigatonnes (Gt) of carbon in 2019 \citep{ipcc2023ar6wg3}. For each tax policy, \hyperref[fig:SCC]{Figure 11} shows how much the emissions reduction is worth using the SCC, in both absolute terms and as a share of global GDP. Relative to global GDP in 2019, the social value of reducing emissions can reach up to 1.25\%.
+
+\subsection{Distributional Welfare Impacts}
+
+
+\hspace*{6mm}  In this section, I compare the effect of achieving 5\% emissions reduction using the different policy tools on welfare across the different labour and entrepreneurial productivity groups. The luxury dirty good tax is omitted because it can never achieve a 5\% emissions reduction as so few individuals consume it. \hyperref[fig:welfaredistribution]{Figure 12} shows the consumption equivalents by group, with the shares of the population in that category displayed in the "share of" row and column.
+
+\hspace*{6mm}  Firstly, for the lowest productivity groups, the shareholder tax yields the highest welfare gains while a uniform carbon tax leads to the lowest welfare gains. Secondly, for the highest productivity groups, all these taxes generally decrease welfare, but do so the most under a basic dirty good tax and the least under the shareholder tax. The shareholder tax is better for both groups because the lowest productivity households can consume more $d_1$ and the highest productivity, and therefore wealthiest, groups can consume more of $d_2$, buffering the impacts from reduced $c$. The basic dirty good tax hurts the highest productivity groups the most. As higher demand for the non-energy good compels entrepreneurs to demand more capital and interest rates rise, the cost of borrowing for the constrained firms (who are more likely to be very productive entrepreneurs) also rises. This is in contrast to the producer-facing taxes in which firms are demanding less capital. 
+
+
+\begin{figure}[h! tbp]
+\text{Figure 12: Welfare breakdown by entrepreneurial and labour productivity groups}
+\begin{center}
+\centering
+\includegraphics[width=\textwidth]{../Slides/welfare_5p.png}
+\captionsetup{font=footnotesize}
+\caption*{\textit{Notes}: For three abatement instruments, the carbon tax, basic dirty good tax, and shareholder tax, this table breaks down the welfare, in consumption equivalent terms, accruing to each labour and entrepreneurial productivity group. The horizontal axis is increasing in labour productivity, while the vertical axis increases in entrepreneurial productivity. The share of z column and share of e row contains the fraction of the population in that productivity group.}
+  \label{fig:welfaredistribution}
+\end{center}
+\end{figure}
+
+\section{Optimal Policy}
+
+\hspace*{6mm} The optimal policy is the set of taxes that maximize the average value of newborns to achieve the emissions reduction target set by the U.S for 2030 of a 50\% reduction from 2005 emission levels. According to data from the EPA,  there is approximately 34\% emissions reduction remaining to be made \citep{epa2024datahighlights}. More formally, the optimal policy solves the following problem:
+
+\begin{equation}
+\underset{\tau_{d_1} , \tau_{d_2} , \tau_s}{max} \sum_{a, \textbf{S}} V_1(a, \textbf{S}) \frac{\Gamma(1, a, \textbf{S})}{\sum_{\textbf{S}} \Gamma(1, a, \textbf{S})} 
+\end{equation}
+
+
+\hspace*{6mm} A 34\% emissions can be achieved in two ways: using a uniform carbon tax of 42\% or using the optimal policy, which is a basic dirty good tax of 80\%, shareholder tax of 70\%, and luxury good tax of 100\%. Despite achieving the same reduction, the welfare and economic outcomes are different. Firstly, average welfare of the newborns entering the economy drops by 0.2\% with the optimal policy as opposed to 1\% under the uniform tax. Average population welfare increases by 0.1\%, while dropping by 1.3\% under the uniform tax. 
+
+\begin{table}[h]
+\centering
+\caption{Comparison of Outcomes under $\tau_e$ and Optimal Policy}
+\begin{tabular}{lcc}
+\hline
+ & $\tau_e$ & Optimal Policy \\
+\hline
+Emissions Reduction & 34\% & 34\% \\
+Newborn average consumption equivalents & -1.0\% & -0.2\% \\
+Population average consumption equivalents & -1.3\% & 0.1\% \\
+Raw capital stock & -0.7\% & -0.6\% \\
+Q & -7.23\% & -6.95\% \\
+Raw Inputs & -7.27\% & -7.01\% \\ 
+Output & -0.55\% & -0.46\% \\
+TFP & 0.04\% & 0.1\% \\
+Top 0.1\% share of wealth & 0.3\% & 0.2\% \\
+Top 0.1\% share of emissions & -10.5\% & -10.1\% \\
+Wages & -3.5\% & -3.4\% \\
+Transfer & 3.2\% & 3.9\% \\
+\hline
+\end{tabular}
+\captionsetup{font=footnotesize}
+\caption*{\textit{Notes:} This table compares the percentage change from the benchmark equilibrium to the uniform carbon tax or optimal policy equilibrium that would arise for each outcome reported.}
+\end{table}
+
+
+\hspace*{6mm}  The reason for the improved outcomes under the optimal tax is that a mixture of taxes that target consumption and production emissions differently allows a relatively larger chunk of emissions reductions to come from the reduction of consumption emissions from both $d_1$ and $d_2$ over cuts in production emissions, as shown in \hyperref[fig:source_emissions]{Table 6}. Since consumption emissions taxes are larger than the shareholder emissions taxes, it buffers the impact on output, wages, and capital as households cut back on their consumption of dirty goods, demand more of the non-energy consumption good while at the same time saving more. Since emissions used in production are taxed relatively lower, entrepreneurs can adjust their activities accordingly and expand production, particularly the entrepreneurs who see their collateral constraints relax. Raw inputs decline by less (-7.01\%) than in the case with a uniform carbon tax (-7.27\%). As Q falls by less and the labour reallocation channel is also weaker, the impact of wages is also slightly smaller, supporting wage-dependent households. 
+
+\begin{table}[h]
+\centering
+\caption{Changes in source of emissions under $\tau_e$ and Optimal Policy}
+\begin{tabular}{lcc}
+\hline
+ & $\tau_e$ & Optimal Policy \\
+\hline
+Basic dirty good emissions	& -18.9\% &	-19.9\% \\
+Luxury dirty good emissions	& -55.7\% &	-65.2\% \\
+Production Sector Emissions	& -40.2\% &	-39.4\% \\
+\hline
+\end{tabular}
+
+\captionsetup{font=footnotesize}
+\caption*{\textit{Notes:} Each row in this table shows the percentage decline in emissions arising from that sector, relative to the benchmark equilibrium. This is done for the uniform carbon tax and the optimal policy. }
+\label{fig:source_emissions}
+\end{table}
+
+\hspace*{6mm} At the same time, total factor productivity is slightly higher, at 0.07\% compared to 0.04\%. The optimal policy has a greater impact on productivity because the larger taxes on consumption induce households to accumulate more savings, relaxing the collateral constraints for especially lower-wealth individuals. While wealth inequality does increase under both policies, it does so less under the optimal tax. However, this also means that the optimal policy reduces carbon inequality by less, at a -10.14\% reduction compared to -10.55\%. All productivity groups experience welfare improvements with the optimal policy, as shown in \hyperref[fig:welf_breakdown]{Figure 13}, with the lowest productivity groups benefiting the most, which is likely arising from the higher transfers and smaller decrease in wages.
+
+\begin{figure}[h! tbp]
+\begin{center}
+\centering
+\text{Figure 13: Welfare breakdown by entrepreneurial and labour productivity groups}
+
+\includegraphics[width=0.85\textwidth]{../Slides/welfare_optimal_carbon.png}
+\captionsetup{font=footnotesize}
+\caption*{\textit{Notes:} This figure compares consumption equivalents in percentages across all labour and entrepreneurial productivity groups arising from either a uniform carbon tax or optimal policy mix. The vertical axis is increasing in entrepreneurial productivity, while the horizontal axis is increasing in labour productivities. Shares of e and z row and column contain the fraction of the population in that productivity group. }
+     \label{fig:welf_breakdown}
+\end{center}
+\end{figure}
+
+\section{Conclusion}
+\hspace*{6mm} With growing evidence documenting carbon inequality, policy-makers are increasingly exploring alternatives to a uniform carbon tax that take a more targeted approach to reducing emissions. In this paper, I study the aggregate and distributional impacts of these more targeted taxes, as well as the performance of a uniform carbon tax in the presence of extreme wealth concentration via rate of return heterogeneity. 
+
+\hspace*{6mm} I find that producer-facing taxes, such as the shareholder carbon tax, lead to large reductions in emissions, lower carbon inequality through differential impacts on constrained and unconstrained entrepreneurs, and also improve the efficient allocation of resources. Although wages fall, the lowest productivity groups experience welfare gains as the lack of taxes on consumptions from emissions means that people substitute from the non-energy good towards consuming more of the basic dirty good, the marginal value of which is higher the closer you are to the subsistence level. Secondly, consumer-facing carbon taxes reduce emissions by less but as households substitute away from the dirty goods, they increase demand for the non-energy good and accumulate more capital. Higher capital demand by entrepreneurs and the loosening of collateral constraints have equilibrium effects of increasing carbon inequality but mitigating the fall in wages that occurs under both the uniform and shareholder carbon tax. Welfare impacts on average are positive, as households substitute to more of the non-energy good. Lastly, while a uniform carbon tax is effective at reducing emissions and also curbs carbon inequality (albeit not as much as the shareholder carbon tax), it exacerbates wealth inequality the most and dampens wages. Average newborn welfare falls, with low welfare gains and eventually losses for the entire population as a uniform carbon tax increases, as all goods that a household consumes are more expensive now. Given the differential impacts of consumer and producer-facing carbon taxes, an optimal tax, which is a mixture of different taxes on the dirty goods and the entrepreneur's energy use, yields higher output, capital, wages, welfare, and total factor productivity relative to a uniform carbon tax. This is because higher consumption-emission taxes buffer the negative impact on aggregate outcomes through households demanding more of the non-energy good and saving more, relaxing collateral constraints, with lower production-emission taxes allowing entrepreneurs to adjust their factor uses accordingly.
+
+\hspace*{6mm} By featuring heterogeneity in both production and consumption emissions, this framework provides a comprehensive analysis of how targeted carbon taxes can improve welfare, productivity, and aggregate economic outcomes relative to a uniform carbon tax. These findings underscore the importance of developing nuanced climate policies that consider the broader economic and social impacts of emissions reduction strategies. 
+
+\clearpage
+\newpage
+
+
+
+\bibliography{Optimal_Carbon_Policy.bib}
+\bibliographystyle{apalike}
+
+\clearpage
+\appendix
+\section{Appendix}
+
+\subsection{With a Climate feedback loop}
+Carbon dioxide in the atmosphere evolves according to the process in \citep{golosov2014optimal}:
+
+\[s_{t}=\sum_{s=0}^{\infty}(1-d_{s})e_{t-s} \]
+
+\[1-d_{s}=(1-\varphi_{L})\varphi_{0}(1-\varphi)^{s}\]
+
+where $\varphi_{0}$ is the share of emissions that do not exit the atmosphere immediately. It decays at a geometric rate $1-\varphi$. $\varphi_{L}$ is the share that remains forever.
+
+The final good producers technology now includes a damage term:
+
+   \[Y=(1-D(s))Q^{\alpha}L_{y}^{1-\alpha}\]
+   
+ 
+where the damage function is defined as:
+
+\[1-D(s)= e^{-\eta (s_{t})}\]
+
+The damage parameter $\eta$ is chosen to match output damages of 1.1\% of GDP in 2019 from \cite{dietz2015endogenous}. I use a geometric decay rate of $\varphi=0.0228$ and exit rate of $1-\varphi_0=0.607$ from \cite{golosov2014optimal}.
+
+
+   
+\subsubsection{Results}
+\begin{figure}[h]
+    \centering
+    \caption{Energy Sector}
+ 	\includegraphics[scale=0.5]{../Code/Output/combinedA.pdf} 
+ 	\captionsetup{font=footnotesize}
+ 	\caption*{}
+    
+\end{figure}
+
+Carbon emissions and labour in the energy sector respond as before, with the main difference now being that climate damages to the final good reduce as shown in panel (b) of Figure 1. 
+
+
+
+\hspace*{6mm} This has implications for how output responds to these policies. Output responses are more positive now, even when they are negative, such as under the shareholder tax, which is largely driven by gains coming from reduced damages as shown in Figure 14. Even though raw inputs are still declining under the emissions tax as before, the reduced damages are high enough to compensate for this. While they are not high enough in the case of the shareholder tax, output declines are still not as pronounced as the benchmark case with no climate feedback loop. 
+
+\begin{figure}[h! ]
+    \centering
+    \caption{Decomposition}
+\includegraphics[scale=0.45]{../Code/Output/combined_decomp.pdf}  
+ 
+\end{figure}
+
+
+
+\hspace*{6mm} Wealth inequality, shown in Figure 3, responds the same as the benchmark case, due to the same channels operating. The shares of wealth held by the top 0.1\%, 1\%, and 10\% rise under the uniform and shareholder tax, although more strongly with the former. While having little effect on top 0.1\% shares, the basic dirty good tax increases the shares of wealth held by the top 1\% and 10\% due to the collateral constraints loosening. 
+
+
+\begin{figure}[h]
+    \centering
+    \caption{Wealth Inequality }   
+\includegraphics[scale=0.57]{../Code/Output/combinedC.pdf} 
+\end{figure}
+
+\hspace*{6mm} In Figure 4, the share of emissions emitted by the top 0.1\% looks different when including a carbon feedback loop. Carbon inequality drops initially under the basic dirty good tax, after which it continues to rise. With a uniform carbon tax, the top 0.1\% emissions share falls off more compared to the benchmark, from around 6\% to 10\% as opposed to approximately 2.5\% to 5.5\%. This is because a climate feedback loop, by reducing damages to the final good, has a positive effect on the price given to entrepreneurs, buffering the decline in their capital demand so that raw inputs do not decline as much. The entrepreneur's policy functions now include  a term which captures the positive effect of reduced damages:
+
+\[k(a,z)=min\left[\left((1-D(s))\mathcal{R}\mu z^{\mu}\left(\frac{r+\delta}{\gamma}\right)^{\mu\left(1-\gamma\right)-1}\left(\frac{p_{e}(1+\tau_{s})}{1-\gamma}\right)^{-\mu(1-\gamma)}\right)^{\frac{1}{1-\mu}},\vartheta(z)a\right]\]
+
+\[e(a,z)=\left(\frac{p_{e}(1+\tau_s)}{(1-D(s))\mathcal{R}\mu(1-\gamma)z^{\mu}k(a,z)^{\gamma}{}^{\mu}}\right)^{\frac{1}{\mu\left(1-\gamma\right)-1}}\]
+     
+     
+
+
+%\[e(a,z)=\left(\frac{p_{e}(1+\tau_s)}{(1-D(s))\mathcal{R}\mu(1-\gamma)z^{\mu}k(a,z)^{\gamma}{}^{\mu}}\right)^{\frac{1}{\mu\left(1-\gamma\right)-1}}\]
+  
+  
+
+With a greater return on their operations, households are inclined towards saving more, and so aggregate capital stock rises. For constrained households, those with a higher level of savings have a lower energy to capital ratio, and since there are more constrained entrepreneurs at the very top, for this group they see larger declines in their energy to capital usages, resulting in greater declines in their carbon shares relative to the equilibrium with no feedback loop. 
+
+
+\begin{figure}[h!]
+    \centering
+    \caption{Carbon Inequality}
+\includegraphics[scale=0.5]{../Code/Output/combinedD.pdf}   
+\end{figure}
+
+
+\hspace*{6mm}  Wages and transfers are shown in Figure 5, and wages are slightly higher to reflect the increased productivity of labour in the final goods sector because of climate damages falling. While interest rates do not change much, $\mathcal{R}$ increases now, reflecting that reduced damages increase the prices of the intermediate goods by improving production in the final goods sector. These are shown in Figure 6.
+
+\begin{figure}[h! tbp]
+    \centering
+    \caption{Wage and Transfers}
+\includegraphics[scale=0.45]{../Code/Output/wage.pdf}   
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \caption{$\mathcal{R}$, Interest Rate, and Raw Capital}
+\includegraphics[scale=0.45]{../Code/Output/interest.pdf}   
+\end{figure}
+
+\hspace*{6mm} Welfare gains, shown in Figure 7 are higher, with the sign reversing for welfare under the uniform carbon tax, when including a feedback loop as the gains from reduced climate damages benefit households more directly, through higher entrepreneurial profits and slightly higher wages. Whereas in the benchmark case, welfare under the basic good tax was strictly higher than welfare under the uniform carbon tax, now the results flip to reflect that emission reductions are very small under the basic good tax. However, at some point, the reduction in climate damages is not enough to counteract the adverse economic effects of the uniform tax and the basic good tax yields higher welfare again for the incoming newborns. 
+
+\begin{figure}[h]
+    \centering
+    \caption{Welfare}
+\includegraphics[scale=0.5]{../Code/Output/combined_welfare.pdf}   
+\end{figure}
+
+
+
+\end{document}
